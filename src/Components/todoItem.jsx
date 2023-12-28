@@ -14,7 +14,7 @@ function TodoItem(props) {
   };
   const handleSaveTodo = () => {
     const updatedTodoObj = { ...props.todo, task: todo };
-    props.onEdit(props.id, updatedTodoObj);
+    props.onEdit(props.todo.id, updatedTodoObj);
     setIsEdit(false);
   };
 
