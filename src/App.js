@@ -1,33 +1,47 @@
 import React from "react";
+import { nanoid } from 'nanoid'
+// src
 import TodoItem from "./Components/todoItem";
 
+
 function App() {
-  const [todoList, setTodoList] = React.useState(["HW", "Hangout"]);
+  const [todoList, setTodoList] = React.useState([]);
   const [newTodo, setNewtodo] = React.useState("");
 
   const todoChangeInput = (event) => {
     setNewtodo(event.target.value);
   };
   const todoAddnew = () => {
-    setTodoList((cur) => [...cur, newTodo]);
+    let newTodoObj = {
+      id:nanoid(),
+      task: newTodo,
+      done: false
+    }
+    setTodoList((cur) => [...cur,  newTodoObj]);
     setNewtodo("");
   };
-  const handleDelete = (idx) => {
-    setTodoList((cur) => [...cur].filter((todo, index) => index !== idx));
+  const handleDelete = (id) => {
+    setTodoList((cur) => [...cur].filter((todoObj, index) => todoObj.id !== id));
   };
-  const handleEditTodo = (idx, updateValue) => {
-    const newTodoList = [...todoList];
-    newTodoList.splice(idx, 1, updateValue);
-    setTodoList(newTodoList);
+  const handleEditTodo = (todoid, updateTodoObj) => {
+    const foundIndex = todoList.findIndex(todoObj => todoObj.id === todoid)
+    if (foundIndex !== -1) {
+      const newTodoList = [...todoList]
+      newTodoList[foundIndex] = updateTodoObj;
+      setTodoList(newTodoList)
+    }
+    // const newTodoList = [...todoList];
+    // newTodoList.splice(idx, 1, updateValue);
+    // setTodoList(newTodoList);
   };
 
-  const todoRender = todoList.map((todo, index) => (
+  const todoRender = todoList.map((todoObj, index) => (
     <TodoItem
-      key={index}
-      todo={todo}
+      key={todoObj.id}
+      todo={todoObj}
       onDelete={handleDelete}
       onEdit={handleEditTodo}
-      index={index}
+      
     />
   ));
 
