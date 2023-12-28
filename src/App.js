@@ -1,13 +1,10 @@
 // NodeModules
 import React from 'react';
-import ListContent from './Components/list/ListContent';
-
+import Modal from './Components/list/Modal';
 function App() {
   return (
     <div>
-      <ListContent name='todo' />
-      <ListContent name='book' />
-      <ListContent name='shopping' />
+      <Modal />
     </div>
   );
 }

@@ -14,3 +14,23 @@ code {
 li {
   list-style: none;
 }
+.Modal {
+  background: #f2f4f6;
+  display: absolute;
+ 
+  inset: 0;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Modal_content {
+  width: 500px;
+  aspect-ratio: 1/1;
+  background: gray;
+  position: relative;
+}
+.modal-btn {
+
+}
