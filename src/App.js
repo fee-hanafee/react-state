@@ -1,8 +1,15 @@
-import React from "react";
-import TodoContent from "./Components/TodoContent";
+// NodeModules
+import React from 'react';
+import ListContent from './Components/list/ListContent';
 
 function App() {
-return <TodoContent />
+  return (
+    <div>
+      <ListContent name='todo' />
+      <ListContent name='book' />
+      <ListContent name='shopping' />
+    </div>
+  );
 }
 
 export default App;
