@@ -1,4 +1,26 @@
 import React from "react";
+function TodoItem(props) {
+  const [isEdit, setIsEdit] = React.useState(false);
+  const [todo, setTodo] = React.useState(props?.todo || '');
+
+  const handleToggleEdit = () => {
+    setIsEdit((p) => !p);
+  };
+  const handleEditTodoText = (event) => {
+    setTodo(event.target.value)
+  }
+
+  return (
+    <li>
+      {isEdit ? <input value={todo} onChange={handleEditTodoText}/> : <span>{todo}</span>}
+
+      <button onClick={handleToggleEdit}>{isEdit ? "save" : "edit"}</button>
+      <button>x</button>
+    </li>
+  );
+}
+
+
 
 function App() {
   const [todoList, setTodoList] = React.useState(["HW", "Hangout"]);
@@ -12,22 +34,15 @@ function App() {
     setNewtodo("");
   };
   const handleDelete = (idx) => {
-    // const newTodolist = [...todoList]
-    // newTodolist.splice(index,1)
-    setTodoList(cur => [...cur].filter((todo,index) =>index !== idx))
+    setTodoList((cur) => [...cur].filter((todo, index) => index !== idx));
   };
 
-  const todoRender = todoList.map((todo, index) => (
-    <li key={index}>
-      {todo}{" "}
-      <button onClick={(e) => handleDelete(index)}>
-        x
-      </button>
-    </li>
-  ));
+  const todoRender = todoList.map((todo, index) => <TodoItem todo={todo} />);
+
   return (
     <div>
       <h1>My Todo</h1>
+
       <ul>
         <input onChange={todoChangeInput} value={newTodo} />
         <button onClick={todoAddnew}>add</button>
