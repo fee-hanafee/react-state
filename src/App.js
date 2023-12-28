@@ -11,16 +11,27 @@ function App() {
     setTodoList((cur) => [...cur, newTodo]);
     setNewtodo("");
   };
+  const handleDelete = (idx) => {
+    // const newTodolist = [...todoList]
+    // newTodolist.splice(index,1)
+    setTodoList(cur => [...cur].filter((todo,index) =>index !== idx))
+  };
 
+  const todoRender = todoList.map((todo, index) => (
+    <li key={index}>
+      {todo}{" "}
+      <button onClick={(e) => handleDelete(index)}>
+        x
+      </button>
+    </li>
+  ));
   return (
     <div>
       <h1>My Todo</h1>
       <ul>
         <input onChange={todoChangeInput} value={newTodo} />
         <button onClick={todoAddnew}>add</button>
-        {todoList.map((todo, index) => (
-          <li key={index}>{todo}</li>
-        ))}
+        {todoRender}
       </ul>
     </div>
   );
