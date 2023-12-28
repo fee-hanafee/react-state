@@ -23,14 +23,14 @@ function TodoItem(props) {
       {isEdit ? (
         <input value={todo} onChange={handleEditTodoText} />
       ) : (
-        <span>{todo}</span>
+        <span >{todo}</span>
       )}
       {isEdit ? (
         <button onClick={handleSaveTodo}>save</button>
       ) : (
         <button onClick={handleToggleEdit}>edit</button>
       )}
-      <button onClick={(e) => props.onDelete(props.todo.id)}>x</button>
+      <button  onClick={(e) => props.onDelete(props.todo.id)}>x</button>
     </li>
   );
 }
