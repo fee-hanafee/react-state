@@ -2,6 +2,8 @@ import React from "react";
 import { nanoid } from "nanoid";
 // src
 import TodoList from "./Components/todolist";
+import Headerlist from "./Components/headerlist";
+import Additem from "./Components/Additem";
 
 function App() {
   const [todoList, setTodoList] = React.useState([]);
@@ -10,10 +12,10 @@ function App() {
   const todoChangeInput = (event) => {
     setNewtodo(event.target.value);
   };
-  const todoAddnew = () => {
+  const todoAddnew = (newTask) => {
     let newTodoObj = {
       id: nanoid(),
-      task: newTodo,
+      task: newTask,
       done: false,
     };
     setTodoList((cur) => [...cur, newTodoObj]);
@@ -35,14 +37,12 @@ function App() {
 
   return (
     <div>
-      <h1>My Todo</h1>
-        <input onChange={todoChangeInput} value={newTodo} />
-        <button onClick={todoAddnew}>add</button>
-      <TodoList 
-      todoList={todoList}
-      onDelete={handleDelete}
-      onEdit={handleEditTodo}
-      
+      <Headerlist name="My Todo" />
+      <Additem onAdd={todoAddnew}/>
+      <TodoList
+        todoList={todoList}
+        onDelete={handleDelete}
+        onEdit={handleEditTodo}
       />
     </div>
   );
